@@ -92,7 +92,7 @@ function draw() {
 
   // mountain
   noStroke();
-  fill(150, 75, 0);
+  fill("#7b3705");
   triangle(0, height, 250, height / 2, 500, height);
   fill(150, 100, 0);
 
@@ -110,6 +110,7 @@ function draw() {
   image(house, (width/2 - house.width/2), (height - house.height + 15));
 
   // text
+  fill("#7b3705");
   textSize(26);
   let s = 'Summersdorf Office';
   // fill(50);
