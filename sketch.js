@@ -1,6 +1,4 @@
-// mouse interactivity
 // house
-// blue sky
 // bird sound
 
 let canvasWidth = 1000;
