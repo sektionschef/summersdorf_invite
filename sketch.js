@@ -25,6 +25,14 @@ let colorNow;
 let amount;
 let black;
 
+let soundtrack;
+let house;
+
+
+function preload() {
+  soundtrack = loadSound('Sunny Day-SoundBible.com-2064222612.mp3');
+  house = loadImage('house_200.png');
+}
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
@@ -36,6 +44,7 @@ function setup() {
 }
 
 function draw() {
+
   // dynamics of sun
   var angle = map(mouseX, 0, width, PI, 2*PI);
   let sunDynX = sunCenterX + cos(angle) * radius;
@@ -87,6 +96,18 @@ function draw() {
   triangle(0, height, 250, height / 2, 500, height);
   fill(150, 100, 0);
 
+  push();
+  fill("#55ae29");
+  rect(0, height - 30, width, 60);
+  // roof
+  fill(230);
+  rect(0, height - 145 - 60, width, 60);
+  // faccade
+  fill(150);
+  rect(0, height - 145, width, 120);
+  pop();
+
+  image(house, (width/2 - house.width/2), (height - house.height + 15));
 
   // text
   textSize(26);
@@ -94,4 +115,8 @@ function draw() {
   // fill(50);
   text(s, 100, 100, 300, 200); // Text wraps within text box
 
+}
+
+function mousePressed() {
+  soundtrack.play();
 }
