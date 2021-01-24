@@ -1,4 +1,5 @@
 // mouse interactivity
+// house
 // blue sky
 // bird sound
 
@@ -11,6 +12,7 @@ let blue = 0;
 
 // start position sun
 let sunY = canvasHeight;
+let risen = false;
 
 
 let sunCenterX = canvasWidth / 2;
@@ -27,36 +29,44 @@ function draw() {
   background(red += 5, green++, blue);
 
 
+  // dynamics of sun
+  var angle = map(mouseX, 0, width, PI, 2*PI);
+  let sunDynX = sunCenterX + cos(angle) * radius;
+  let sunDynY = sunCenterY + sin(angle) * radius;
+
+
   //sun
   //outer
   noStroke();
   fill(255, 165, 0, 50);
-  if (sunY > 144) {
+  if (sunY > 144 && !risen) {
     circle(500, sunY--, 200);
-  } else if (sunY == 144) {
+  } else if (sunY == 144 && !risen) {
     circle(500, sunY, 200);
+    risen = true;
+  } else {
+    circle(sunDynX, sunDynY, 200);
   }
   //inner
   noStroke();
   fill(255, 100, 0, 100);
-  if (sunY > 144) {
+  if (sunY > 144 && !risen) {
     circle(500, sunY--, 150);
-  } else if (sunY == 144) {
+  } else if (sunY == 144 && !risen) {
     circle(500, sunY, 150);
+    risen = true;
+  } else {
+    circle(sunDynX, sunDynY, 150);
   }
 
-  var angle = map(mouseX, 0, width, PI, 2*PI);
-  let sunsX = sunCenterX + cos(angle) * radius;
-  let sunsY = sunCenterY + sin(angle) * radius;
-  circle(sunsX, sunsY, 100);
-
-
+  // mountain
   noStroke();
   fill(150, 75, 0);
   triangle(0, canvasHeight, 250, canvasHeight / 2, 500, canvasHeight);
   fill(150, 100, 0);
-  // triangle(500, 400, 750, 200, 1000, 400);
 
+
+  // text
   textSize(26);
   let s = 'Summersdorf Office';
   // fill(50);
