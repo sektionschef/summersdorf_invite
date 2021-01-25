@@ -27,10 +27,14 @@ let black;
 
 let soundtrack;
 let house;
+let bubble;
+
+let bubbleX = canvasWidth + 20;
 
 
 function preload() {
   soundtrack = loadSound('Sunny Day-SoundBible.com-2064222612.mp3');
+  bubble = loadImage("stammersdorf_bubble.png")
   house = loadImage('house_200.png');
 }
 
@@ -92,29 +96,46 @@ function draw() {
 
   // mountain
   noStroke();
-  fill("#7b3705");
+  fill("#79462e");
   triangle(0, height, 250, height / 2, 500, height);
   fill(150, 100, 0);
 
+  // floor
   push();
-  fill("#55ae29");
+  fill("#304858");
   rect(0, height - 30, width, 60);
   // roof
-  fill(230);
+  fill("#b5b9bb");
   rect(0, height - 145 - 60, width, 60);
   // faccade
-  fill(150);
+  fill("#71838f");
   rect(0, height - 145, width, 120);
+  pop();
+
+  push();
+  fill("#b5b9bb")
+  var x = 10;
+  rect(x, (height - 110), 20, 40);
+  for (i = 0; i < 15; i++) {
+    x = x + 80;
+    rect(x, (height - 110), 20, 40);
+  }
   pop();
 
   image(house, (width/2 - house.width/2), (height - house.height + 15));
 
   // text
-  fill("#7b3705");
-  textSize(26);
-  let s = 'Summersdorf Office';
-  // fill(50);
-  text(s, 100, 100, 300, 200); // Text wraps within text box
+  // fill("#7b3705");
+  // textSize(26);
+  // let s = 'Summersdorf Office';
+  // // fill(50);
+  // text(s, 100, 100, 300, 200); // Text wraps within text box
+
+  if (risen && bubbleX > 600) {
+    image(bubble, bubbleX--, 100);
+  } else if (risen && bubbleX == 600) {
+    image(bubble, 600, 100);
+  }
 
 }
 
